@@ -1,7 +1,9 @@
 <template>
     <div>
+        <home/>
         <menubar/>
     </div>
+    
     
 </template>
 

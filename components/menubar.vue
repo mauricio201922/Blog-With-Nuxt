@@ -49,7 +49,11 @@
                     v-model="senhaLogin">
                 </b-form-input>
 
-                <b-button variant="primary" @click="Login">Logar</b-button>
+                <b-button class="mr-3" variant="primary" @click="Login">Logar</b-button>
+
+                <b-navbar-nav>
+                    <b-nav-item to="/">Cadastrar</b-nav-item>
+                </b-navbar-nav>
 
             </b-form>
 
