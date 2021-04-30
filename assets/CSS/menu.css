@@ -1,0 +1,14 @@
+.aling-margin-left {
+    margin-left: 25%;
+}
+
+.pad{
+    padding: 1px;
+    margin: 0 5px 0 0;
+    padding: auto;
+    margin: auto;
+}
+
+.color {
+    color: white;
+}

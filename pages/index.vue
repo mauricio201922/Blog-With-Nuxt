@@ -1,9 +1,12 @@
 <template>
-    <Menu/>
+    <div>
+        <menubar/>
+    </div>
+    
 </template>
 
 <script>
 export default {
-
+    
 }
 </script>
