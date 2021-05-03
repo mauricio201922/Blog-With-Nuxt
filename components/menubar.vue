@@ -16,7 +16,7 @@
 
                     <b-nav-item-dropdown text="Blog" right>
                         <b-dropdown-item to="/">Blog profile</b-dropdown-item>
-                        <b-dropdown-item to="/">Blog cards</b-dropdown-item>
+                        <b-dropdown-item to="/#cards">Blog cards</b-dropdown-item>
                         <b-dropdown-item to="/">Blog notice</b-dropdown-item>
                     </b-nav-item-dropdown>
 

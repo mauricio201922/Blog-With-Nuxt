@@ -2,6 +2,46 @@
     padding-top: 58px;
     padding-left: 8px;
     padding-right: 8px;
-    width: 100%;
+    padding-bottom: 25px;
+}
+
+.padd{
     height: 350px;
+    justify-content: center;
+    min-height: auto;
+    max-height: 500px;
+}
+
+.bg-image{
+    background-image: url("@/assets/img/fundo-blog.jpg");
+}
+
+.altura-max{
+    height: 1050px;
+}
+
+.category{
+    margin-top: 5px;
+    width: 36%;
+    text-align: right;
+}
+
+.desactive-link{
+    color: rgb(155, 155, 155);
+    text-decoration: none;
+}
+
+.desactive-link:hover{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.author{
+    position: absolute;
+    top: 60%;
+    left: 0 !important;
+    width: 79%;
+    padding-left: 26vw;
+    padding-right: 20vw;
+    text-align: left;
 }
