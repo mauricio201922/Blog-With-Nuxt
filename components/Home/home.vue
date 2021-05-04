@@ -158,7 +158,7 @@
             </div>
         </div>
 
-        <div class="container main-container category-list tag-list is_tag ">
+        <div class="container main-container category-list tag-list is_tag" id="notices">
             
             <section class="list">
                 <header class="list-header">
@@ -191,5 +191,54 @@
                 </div>
             </section>
         </div>
+
+        <div class="navbar navbar-dark bg-dark">
+            <div class="container">
+                <nav class="text-center mr-3 ms-3 pr-2 ps-2 w-100">
+                    <div class="row row-cols-3 text-light">
+                        <h3>teste</h3>
+                        <h3>teste</h3>
+                        <h3>teste</h3>
+                    </div>
+                    <div class="row row-cols-3">
+                        <a href="#" class="desactive-link-light">Home</a>
+                        <a href="#" class="desactive-link-light">teste</a>
+                        <a href="#" class="desactive-link-light">teste</a>
+                        <a href="#" class="desactive-link-light">Sobre nós</a>
+                        <a href="#" class="desactive-link-light">teste</a>
+                        <a href="#" class="desactive-link-light">teste</a>
+                        <b-nav-item v-b-modal.fale-conosco>
+                            <span class="desactive-link-light">Fale Conosco</span>
+                        </b-nav-item>
+                        <a href="#" class="desactive-link-light">teste</a>
+                        <a href="#" class="desactive-link-light">teste</a>
+                    </div>
+                </nav>
+                <div class="border-top border-light w-100 mt-3 text-center">
+                    <span class="text-light">© 2021 - 2021 | Blog - Todos os direitos seguindo.</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal para Fale Conosco -->
+        <b-modal id="fale-conosco" ref="modal" title="Fale Conosco">
+            <form ref="form" @submit.stop.prevent="faleConoscoSubmitado">
+                <b-form-group 
+                label="Nome"
+                label-for="nome-user"
+                invalid-feedback="Name is required">
+                    <b-input id="nome-user"></b-input>
+                </b-form-group>
+
+                <b-form-group 
+                label="Comentario"
+                label-for="comentario-user">
+                    <b-textarea id="comentario-user"></b-textarea>
+                </b-form-group>
+            </form>
+        </b-modal>
+
+        <!----------------------------------------------------------------->
+
     </div>
 </template>

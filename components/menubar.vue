@@ -17,14 +17,10 @@
                     <b-nav-item-dropdown text="Blog" right>
                         <b-dropdown-item to="/">Blog profile</b-dropdown-item>
                         <b-dropdown-item to="/#cards">Blog cards</b-dropdown-item>
-                        <b-dropdown-item to="/">Blog notice</b-dropdown-item>
+                        <b-dropdown-item to="/#notices">Blog notice</b-dropdown-item>
                     </b-nav-item-dropdown>
 
-                    <b-nav-item-dropdown text="Portfolio" right>
-
-                        <b-dropdown-item to="/">Projects</b-dropdown-item>
-
-                    </b-nav-item-dropdown>
+                    <b-nav-item to="/portfolio" right>Portfolio</b-nav-item>
 
                 </b-navbar-nav>
 
@@ -52,8 +48,49 @@
                 <b-button class="mr-3" variant="primary" @click="Login">Logar</b-button>
 
                 <b-navbar-nav>
-                    <b-nav-item to="/">Cadastrar</b-nav-item>
+                    <b-nav-item v-b-modal.modal-prevent-closing>Cadastrar</b-nav-item>
                 </b-navbar-nav>
+
+                <b-modal
+                id="modal-prevent-closing"
+                ref="modal"
+                title="Cadastro"
+                @show="resetModal"
+                @hidden="resetModal"
+                @ok="handleOk">
+                    <form ref="form" @submit.stop.prevent="handleSubmit">
+                        <b-form-group
+                        label="Name"
+                        label-for="name-input"
+                        invalid-feedback="Name is required"
+                        :state="nameState">
+
+                            <b-form-input id="name-input" required></b-form-input>
+                            
+                            
+                        </b-form-group>
+
+                        <b-form-group
+                        label="Senha"
+                        label-for="senha-input"
+                        invalid-feedback="Name is required"
+                        :state="nameState">
+
+                            <b-form-input id="senha-input" required></b-form-input>
+                            
+                        </b-form-group>
+
+                        <b-form-group
+                        label="Confirme sua Senha"
+                        label-for="confirme-senha-input"
+                        invalid-feedback="Name is required"
+                        :state="nameState">
+
+                            <b-form-input id="confirme-senha-input" required></b-form-input>
+                            
+                        </b-form-group>
+                    </form>
+                </b-modal>
 
             </b-form>
 

@@ -2,7 +2,7 @@
     padding-top: 58px;
     padding-left: 8px;
     padding-right: 8px;
-    padding-bottom: 25px;
+    padding-bottom: 58px;
 }
 
 .padd{
@@ -44,4 +44,14 @@
     padding-left: 26vw;
     padding-right: 20vw;
     text-align: left;
+}
+
+.desactive-link-light{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.desactive-link-light:hover{
+    color: rgb(177, 177, 177);
+    text-decoration: none;
 }
