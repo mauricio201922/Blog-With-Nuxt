@@ -192,34 +192,63 @@
             </section>
         </div>
 
-        <div class="navbar navbar-dark bg-dark">
+        <div id="footer">
             <div class="container">
-                <nav class="text-center mr-3 ms-3 pr-2 ps-2 w-100">
-                    <div class="row row-cols-3 text-light">
-                        <h3>teste</h3>
-                        <h3>teste</h3>
-                        <h3>teste</h3>
+                <nav class="row">
+
+                    <!-- Navbar Final - links 1 -->
+                    <div class="col-md-4 text-light">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <dt>Blog Inicial</dt>
+                            </div>
+                            <dl class="col-sm-6">
+                                <a href="#" class="desactive-link-light"><dd>Home</dd></a>
+                                <a href="#" class="desactive-link-light"><dd>Sobre nós</dd></a>
+                                <b-item v-b-modal.fale-conosco>
+                                    <span class="desactive-link-light">Fale Conosco</span>
+                                </b-item>
+                            </dl>
+                            <dl class="col-sm-6"></dl>
+                        </div>
                     </div>
-                    <div class="row row-cols-3">
-                        <a href="#" class="desactive-link-light">Home</a>
-                        <a href="#" class="desactive-link-light">teste</a>
-                        <a href="#" class="desactive-link-light">teste</a>
-                        <a href="#" class="desactive-link-light">Sobre nós</a>
-                        <a href="#" class="desactive-link-light">teste</a>
-                        <a href="#" class="desactive-link-light">teste</a>
-                        <b-nav-item v-b-modal.fale-conosco>
-                            <span class="desactive-link-light">Fale Conosco</span>
-                        </b-nav-item>
-                        <a href="#" class="desactive-link-light">teste</a>
-                        <a href="#" class="desactive-link-light">teste</a>
+
+                    <!-- Navbar Final - links 2 -->
+                    <div class="col-md-4 text-light">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <dt>teste</dt>
+                            </div>
+                            <dl class="col-sm-6">
+                                <a href="#" class="desactive-link-light"><dd>teste</dd></a>
+                                <a href="#" class="desactive-link-light"><dd>teste</dd></a>
+                            </dl>
+                            <dl class="col-sm-6"></dl>
+                        </div>
                     </div>
+
+                    <!-- Navbar Final - links 3 -->
+                    <div class="col-md-4 text-light">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <dt>teste</dt>
+                            </div>
+                            <dl class="col-sm-6">
+                                <a href="#" class="desactive-link-light"><dd>teste</dd></a>
+                                <a href="#" class="desactive-link-light"><dd>teste</dd></a>
+                            </dl>
+                            <dl class="col-sm-6"></dl>
+                        </div>
+                    </div>
+                    
                 </nav>
-                <div class="border-top border-light w-100 mt-3 text-center">
+                <div class="border-top border-light w-100 mt-3">
                     <span class="text-light">© 2021 - 2021 | Blog - Todos os direitos seguindo.</span>
                 </div>
             </div>
         </div>
         
+        <!-- Modals -->
         <!-- Modal para Fale Conosco -->
         <b-modal id="fale-conosco" ref="modal" title="Fale Conosco">
             <form ref="form" @submit.stop.prevent="faleConoscoSubmitado">

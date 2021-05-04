@@ -54,16 +54,12 @@
                 <b-modal
                 id="modal-prevent-closing"
                 ref="modal"
-                title="Cadastro"
-                @show="resetModal"
-                @hidden="resetModal"
-                @ok="handleOk">
+                title="Cadastro">
                     <form ref="form" @submit.stop.prevent="handleSubmit">
                         <b-form-group
                         label="Name"
                         label-for="name-input"
-                        invalid-feedback="Name is required"
-                        :state="nameState">
+                        invalid-feedback="Name is required">
 
                             <b-form-input id="name-input" required></b-form-input>
                             
@@ -73,8 +69,7 @@
                         <b-form-group
                         label="Senha"
                         label-for="senha-input"
-                        invalid-feedback="Name is required"
-                        :state="nameState">
+                        invalid-feedback="Name is required">
 
                             <b-form-input id="senha-input" required></b-form-input>
                             
@@ -83,8 +78,7 @@
                         <b-form-group
                         label="Confirme sua Senha"
                         label-for="confirme-senha-input"
-                        invalid-feedback="Name is required"
-                        :state="nameState">
+                        invalid-feedback="Name is required">
 
                             <b-form-input id="confirme-senha-input" required></b-form-input>
                             

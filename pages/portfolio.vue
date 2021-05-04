@@ -1,6 +1,7 @@
 <template>
     <div>
         <menubar/>
+        <portfolio-profile/>
     </div>
     
     

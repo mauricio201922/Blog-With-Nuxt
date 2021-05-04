@@ -3,8 +3,6 @@
         <home/>
         <menubar/>
     </div>
-    
-    
 </template>
 
 <script>
