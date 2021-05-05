@@ -14,7 +14,7 @@
                 </div>
             </section>
         </div>
-        <b-form-file ref="file" v-model="file2" class="mt-3" plain></b-form-file>
+        <b-form-file ref="file" v-model="file" class="mt-3" plain></b-form-file>
         <div class="mt-3">Selected file: {{ file2 ? file2.name : '' }}</div>
         <button @click="selectFile">teste</button>
         <img v-bind:src="imagePreview" v-show="showPreview">
@@ -25,8 +25,7 @@
   export default {
     data() {
       return {
-        file1: null,
-        file2: null,
+        file: null,
         showPreview: false,
         imagePreview: ''
       }
@@ -37,7 +36,7 @@
             
             this.file2 = this.$refs.file.files[0];
 
-            console.log(this.file2)
+            console.log(this.file)
 
             /*
             Initialize a File Reader object
@@ -59,17 +58,17 @@
             /*
             Check to see if the file is not empty.
             */
-            if(this.file2){
+            if(this.file){
             /*
                 Ensure the file is an image file.
             */
-                if ( /\.(jpe?g|png|gif|zip)$/.test( this.file2.name ) ) {
+                if ( /\.(jpe?g|png|gif)$/.test( this.file.name ) ) {
                     /*
                     Fire the readAsDataURL method which will read the file in and
                     upon completion fire a 'load' event which we will listen to and
                     display the image in the preview.
                     */
-                    reader.readAsDataURL(this.file2);
+                    reader.readAsDataURL(this.file);
                 }
             }
         }
