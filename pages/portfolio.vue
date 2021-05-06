@@ -1,6 +1,5 @@
 <template>
     <div>
-        <menubar/>
         <portfolio-profile/>
     </div>
     
@@ -9,6 +8,6 @@
 
 <script>
 export default {
-    
+    layout: 'Menu'
 }
 </script>

@@ -246,7 +246,7 @@ export default {
         
 
         onResize() {
-            this.isMobile = window.innerWidth < 720
+            this.isMobile = window.innerWidth < 800
         }
     }
 }
