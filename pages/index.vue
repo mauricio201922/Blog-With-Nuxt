@@ -169,6 +169,10 @@
                 </div>
             </section>
         </div><br/>
+
+        <h1>Count: {{ get }}</h1>
+        <button @click="teste">teste</button>
+        
     </div>
 </template>
 
@@ -176,5 +180,15 @@
 
 export default {
     layout: 'Menu',
+    computed: {
+        get() {
+            return this.$store.getters['cadastrar/get']
+        }
+    },
+    methods: {
+        teste() {
+            this.$store.dispatch('cadastrar/testando')
+        }
+    }
 }
 </script>
