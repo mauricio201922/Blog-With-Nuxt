@@ -3,6 +3,7 @@
         <!-- Desktop -->
         <b-navbar v-if="!isMobile" type="dark" variant="dark" fixed="top">
             
+            <!-- Menu na parte de start -->
             <b-navbar-brand to="/">Blog</b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -13,6 +14,7 @@
                     <b-nav-item to="/">Home</b-nav-item>
                 </b-navbar-nav>
 
+                <!-- Bot~eos para mudar os posicionamentos da tela -->
                 <b-navbar-nav>
 
                     <b-nav-item-dropdown text="Blog" right>
@@ -27,6 +29,7 @@
 
             </b-collapse>
 
+            <!-- Fomulários para fazer Login ou Cadastro -->
             <b-form inline class="justify-content-right pad" v-if="!isLogin">
                 <label class="sr-only" for="inline-form-input-name">Name</label>
                 <b-form-input
@@ -46,12 +49,17 @@
                     v-model="senhaLogin">
                 </b-form-input>
 
-                <b-button class="mr-3" variant="primary" @click="Login">Logar</b-button>
+                <!-- Botão Logar -->
+                <b-button class="mr-3" variant="primary" @click="Verificando">Logar</b-button>
+
+                <!------------------------------------------------------------------------------>
 
                 <b-navbar-nav>
                     <b-nav-item v-b-modal.modal-prevent-closing>Cadastrar</b-nav-item>
                 </b-navbar-nav>
 
+
+                <!-- Cadastro do Usuário -->
                 <b-modal
                 id="modal-prevent-closing"
                 ref="modal"
@@ -86,12 +94,15 @@
                         </b-form-group>
                     </form>
                 </b-modal>
-
             </b-form>
+
+            <!---------------------------------------------------------------------------------------------------------------------->
+            <!---------------------------------------------------------------------------------------------------------------------->
+
 
             <div class="color mr-3" v-if="isLogin">
                 <b-link to="/"><b-avatar class="mr-1 mb-1 mt-1"></b-avatar></b-link>
-                <span class="mr-auto">{{ usuario }}</span>
+                <span class="mr-auto">{{ nomeLogin }}</span>
             </div>
 
         </b-navbar>
@@ -210,6 +221,7 @@
 export default {
     data() {
         return {
+            users: [],
             nomeLogin: '',
             senhaLogin: '',
             isLogin: false,
@@ -218,11 +230,14 @@ export default {
     },
 
     computed: {
-        usuario() {
-            return this.nomeLogin
+        getUsers() {
+            return this.$store.getters['login/getUsers']
         }
     },
 
+    /**************************************************************************************/
+
+    /* Config para tamanho de Tela */
     beforeDestroy () {
         if (typeof window !== 'undefined') {
             window.removeEventListener('resize', this.onResize, { passive: true })
@@ -234,17 +249,20 @@ export default {
         window.addEventListener('resize', this.onResize, { passive: true })
     },
 
+    /**************************************************************************************/
+
+
+
     methods: {
-        Login() {
-            if(this.nomeLogin == '' || this.senhaLogin == '') { alert("Nome ou senha não inseridos!") }
-            else{
-                console.log("Nome: " + this.nomeLogin + " Senha: " + this.senhaLogin)
-                this.isLogin = !this.isLogin
-            }
+        Verificando() {
+            this.users = {nome: this.nomeLogin, senha: this.senhaLogin}
+            this.$store.dispatch('login/GetUserLogin', this.users)
+
+            let name = this.$store.getters['login/getUsers']
+
+            console.log(name)
         },
-
         
-
         onResize() {
             this.isMobile = window.innerWidth < 800
         }

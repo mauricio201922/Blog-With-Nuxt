@@ -1,19 +1,5 @@
 <template>
     <div>
-        <div class="bg-image o-hidden position-relative config-home" id="blog-profile">
-            <section class="min-vh-50 o-hidden d-flex flex-column padd">
-                <div class="container">
-                    <div class="row justify-content-center text-center align-items-center">
-                        <div class="col-xl-5 col-lg-9 col-md-10 layer-3 aos-init aos-animate text-light">
-                            <h1 class="display-3">Portfólio</h1>
-                            <div class="mb-4">
-                                <h6 class="lead px-xl-5">Nessa seção, o usuário terá seu portfólio pessoal, poderá salvar seus projetos aqui!</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
         <b-form-file ref="file" v-model="file" class="mt-3" plain></b-form-file>
         <div class="mt-3">Selected file: {{ file2 ? file2.name : '' }}</div>
         <button @click="selectFile">teste</button>
