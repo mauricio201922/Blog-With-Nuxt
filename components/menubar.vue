@@ -222,6 +222,7 @@ export default {
     data() {
         return {
             users: [],
+            name: [],
             nomeLogin: '',
             senhaLogin: '',
             isLogin: false,
@@ -254,13 +255,17 @@ export default {
 
 
     methods: {
-        Verificando() {
+          Verificando() {
             this.users = {nome: this.nomeLogin, senha: this.senhaLogin}
-            this.$store.dispatch('login/GetUserLogin', this.users)
+            this.$store.dispatch('login/GetUserLogin', this.users).then(res => {
+                this.$store.commit('login/setUsers', res)
 
-            let name = this.$store.getters['login/getUsers']
+                this.name =  this.$store.getters['login/getUsers']
 
-            console.log(name)
+                if(this.nomeLogin == this.name.nome){
+                    this.isLogin = !this.isLogin
+                }
+            })
         },
         
         onResize() {

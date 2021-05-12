@@ -1,5 +1,3 @@
-import { BIconLayoutTextSidebarReverse } from "bootstrap-vue"
-
 // state
 export const state = () => ({
     users: []
@@ -15,9 +13,9 @@ export const mutations = {
 // actions
 export const actions = {
     GetUserLogin({ commit }, todos) {
-        const api = this.$axios.$get('https://localhost:5001/Login/Get?nome=' + todos.nome + '&senha=' + todos.senha)
+        var res = this.$axios.$get('https://localhost:5001/Login/Get?nome=' + todos.nome + '&senha=' + todos.senha)
 
-        commit('setUsers', api)
+        return res
         
     }
 }
