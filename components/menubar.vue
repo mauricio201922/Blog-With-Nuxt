@@ -14,7 +14,7 @@
                     <b-nav-item to="/">Home</b-nav-item>
                 </b-navbar-nav>
 
-                <!-- Bot~eos para mudar os posicionamentos da tela -->
+                <!-- Botões para mudar os posicionamentos da tela -->
                 <b-navbar-nav>
 
                     <b-nav-item-dropdown text="Blog" right>
@@ -28,6 +28,8 @@
                 </b-navbar-nav>
 
             </b-collapse>
+
+            <!------------------------------------------------------------------------------------------>
 
             <!-- Fomulários para fazer Login ou Cadastro -->
             <b-form inline class="justify-content-right pad" v-if="!isLogin">
@@ -50,7 +52,8 @@
                 </b-form-input>
 
                 <!-- Botão Logar -->
-                <b-button class="mr-3" variant="primary" @click="Verificando">Logar</b-button>
+                <b-button class="mr-3" variant="primary" @click="Logar">Logar</b-button>
+
 
                 <!------------------------------------------------------------------------------>
 
@@ -63,14 +66,15 @@
                 <b-modal
                 id="modal-prevent-closing"
                 ref="modal"
-                title="Cadastro">
+                title="Cadastro"
+                @ok="Cadastro">
                     <form ref="form" @submit.stop.prevent="handleSubmit">
                         <b-form-group
                         label="Name"
                         label-for="name-input"
                         invalid-feedback="Name is required">
 
-                            <b-form-input id="name-input" required></b-form-input>
+                            <b-form-input id="name-input" v-model="nomeLogin" required></b-form-input>
                             
                             
                         </b-form-group>
@@ -80,7 +84,7 @@
                         label-for="senha-input"
                         invalid-feedback="Name is required">
 
-                            <b-form-input id="senha-input" required></b-form-input>
+                            <b-form-input type="password" v-model="senhaLogin" id="senha-input" required></b-form-input>
                             
                         </b-form-group>
 
@@ -89,29 +93,43 @@
                         label-for="confirme-senha-input"
                         invalid-feedback="Name is required">
 
-                            <b-form-input id="confirme-senha-input" required></b-form-input>
+                            <b-form-input type="password" v-model="senhaConfirme" id="confirme-senha-input" required></b-form-input>
                             
                         </b-form-group>
                     </form>
                 </b-modal>
             </b-form>
 
-            <!---------------------------------------------------------------------------------------------------------------------->
-            <!---------------------------------------------------------------------------------------------------------------------->
-
-
             <div class="color mr-3" v-if="isLogin">
                 <b-link to="/"><b-avatar class="mr-1 mb-1 mt-1"></b-avatar></b-link>
                 <span class="mr-auto">{{ nomeLogin }}</span>
             </div>
-
         </b-navbar>
+
+
+        <!--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^-->
+        <!---------------------------------------------------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------------------------------------->
+        <!--vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv-->
+
 
         <!-- Mobile -->
         <b-navbar v-if="isMobile" type="dark" variant="dark" fixed="top">
             
+            <!-- Menu na parte de start -->
             <b-navbar-brand to="/">Blog</b-navbar-brand>
 
+            <!-- Botão para ativar uma transiction -->
             <b-button class="ml-auto bg-transparent border-0" v-b-toggle.sidebar-right><img class="ml-auto" src="..\assets\img\testando.png" style="color: white;"></b-button>
             
             <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="light" title="Blog" right shadow>
@@ -140,6 +158,9 @@
 
                             <hr/>
 
+                            <!------------------------------------------------------------------------------------------>
+
+                            <!-- Fomulários para fazer Login ou Cadastro -->
                             <h2>Login</h2>
 
                             <b-form inline class="justify-content-right pad" v-if="!isLogin">
@@ -161,12 +182,16 @@
                                     v-model="senhaLogin">
                                 </b-form-input>
 
-                                <b-button class="mr-3" variant="primary" @click="Login">Logar</b-button>
+                                <!-- Botão para Logar no formato mobile -->
+                                <b-button class="mr-3" variant="primary" @click="Logar">Logar</b-button>
+
+                                <!------------------------------------------------------------------------------>
 
                                 <b-navbar-nav>
                                     <b-nav-item v-b-modal.modal-prevent-closing>Cadastrar</b-nav-item>
                                 </b-navbar-nav>
-
+                                
+                                <!-- Cadastro do usuário no formato mobile -->
                                 <b-modal
                                 id="modal-prevent-closing"
                                 ref="modal"
@@ -206,7 +231,7 @@
 
                             <div class="color mr-3" v-if="isLogin">
                                 <b-link to="/"><b-avatar class="mr-1 mb-1 mt-1"></b-avatar></b-link>
-                                <span class="mr-auto">{{ usuario }}</span>
+                                <span class="mr-auto">{{ nomeLogin }}</span>
                             </div>
 
                         </b-nav>
@@ -222,11 +247,13 @@ export default {
     data() {
         return {
             users: [],
-            name: [],
             nomeLogin: '',
             senhaLogin: '',
             isLogin: false,
-            isMobile: false
+            isMobile: false,
+
+            /* variavel para saber se as senhas são iguais */
+            senhaConfirme: ''
         }
     },
 
@@ -255,14 +282,34 @@ export default {
 
 
     methods: {
-          Verificando() {
+        Cadastro() {
+            if(this.nomeLogin != '' && this.senhaLogin != ''){
+                if(this.senhaLogin == this.senhaConfirme){
+
+                    this.users = {nome: this.nomeLogin, senha: this.senhaLogin}
+
+                    this.$store.dispatch('cadastrar/salvarCadastro', this.users)
+
+                    alert("Cadastrado com sucesso!")
+
+                }
+                else {
+                    alert("Senha invalida!")
+                }
+            }
+            else{
+                alert("Cadastro não foi preenchido")
+            }
+        },
+
+        Logar() {
             this.users = {nome: this.nomeLogin, senha: this.senhaLogin}
             this.$store.dispatch('login/GetUserLogin', this.users).then(res => {
                 this.$store.commit('login/setUsers', res)
 
-                this.name =  this.$store.getters['login/getUsers']
+                let name =  this.$store.getters['login/getUsers']
 
-                if(this.nomeLogin == this.name.nome){
+                if(this.nomeLogin == name.nome){
                     this.isLogin = !this.isLogin
                 }
             })

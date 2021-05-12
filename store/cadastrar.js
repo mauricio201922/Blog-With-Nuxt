@@ -1,19 +1,10 @@
-// state
-export const state = () => ({
-    users: []
-})
-
-// mutations
-export const mutations = {
-    
-}
-
 // actions
 export const actions = {
-    
-}
-
-// getters
-export const getters = {
-    
+    salvarCadastro({}, todos) {
+        this.$axios.$post('https://localhost:5001/Login/Salvar/cadastro?nome=' 
+            + todos.nome
+            + '&senha='
+            + todos.senha
+        )
+    }
 }

@@ -13,9 +13,9 @@
                             <dl class="col-sm-6">
                                 <a href="#" class="desactive-link-light"><dd>Home</dd></a>
                                 <a href="#" class="desactive-link-light"><dd>Sobre nós</dd></a>
-                                <b-item v-b-modal.fale-conosco>
+                                <b-navbar-nav v-b-modal.fale-conosco>
                                     <span class="desactive-link-light">Fale Conosco</span>
-                                </b-item>
+                                </b-navbar-nav>
                             </dl>
                             <dl class="col-sm-6"></dl>
                         </div>
@@ -55,6 +55,8 @@
                 </div>
             </div>
         </div>
+
+        <!-------------------------------------------------------------------------------------------------->
 
         <!-- Modals -->
         <!-- Modal para Fale Conosco -->

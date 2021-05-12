@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <home titulo="Blog Profile" subtitulo="Meu site pessoal e todos os meus projetos serão postados aqui!">
+        <home titulo="Blog Profile" subtitulo="Todos os meus projetos serão postados aqui!">
             <a href="https://github.com/mauricio201922/" class="btn btn-lg btn-light mx-1">GitHub</a>
             <a href="https://www.linkedin.com/in/mauriciorubiale/" class="btn btn-lg btn-light mx-1">Linkedin</a>
         </home>
