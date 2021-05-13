@@ -25,7 +25,7 @@
                     <div class="col-md-4 text-light">
                         <div class="row">
                             <div class="col-12 mb-3">
-                                <dt>teste</dt>
+                                <dt>Serviços</dt>
                             </div>
                             <dl class="col-sm-6">
                                 <a href="#" class="desactive-link-light"><dd>teste</dd></a>

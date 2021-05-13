@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- Desktop -->
-        <b-navbar v-if="!isMobile" type="dark" variant="dark" fixed="top">
+        <b-navbar v-if="!isMobile" type="dark" variant="dark" fixed="top" class="shadow mb-5">
             
             <!-- Menu na parte de start -->
             <b-navbar-brand to="/">Blog</b-navbar-brand>
@@ -103,6 +103,14 @@
             <div class="color mr-3" v-if="isLogin">
                 <b-link to="/"><b-avatar class="mr-1 mb-1 mt-1"></b-avatar></b-link>
                 <span class="mr-auto">{{ nomeLogin }}</span>
+                <b-button 
+                class="bg-transparent border-0" 
+                @click="logout">
+                    <img 
+                    src="@/assets/img/logout.png" 
+                    width="32" 
+                    height="32">
+                </b-button>
             </div>
         </b-navbar>
 
@@ -257,9 +265,16 @@ export default {
         }
     },
 
-    computed: {
-        getUsers() {
-            return this.$store.getters['login/getUsers']
+    created() {
+        if(window.localStorage.getItem('id') != null){
+            this.$store.dispatch('Usuarios/usuario/getUserLogado', parseInt(window.localStorage.getItem('id'))).then(res => {
+                console.log(res)
+
+                this.$store.commit('Usuarios/usuario/setUsuario', res)
+
+                this.nomeLogin = this.$store.getters['Usuarios/usuario/getUser']
+                this.isLogin = !this.isLogin
+            })
         }
     },
 
@@ -282,13 +297,17 @@ export default {
 
 
     methods: {
+        logout() {
+            window.localStorage.clear()
+            this.isLogin = !this.isLogin
+        },
         Cadastro() {
             if(this.nomeLogin != '' && this.senhaLogin != ''){
                 if(this.senhaLogin == this.senhaConfirme){
 
                     this.users = {nome: this.nomeLogin, senha: this.senhaLogin}
 
-                    this.$store.dispatch('cadastrar/salvarCadastro', this.users)
+                    this.$store.dispatch('Usuarios/cadastrar/salvarCadastro', this.users)
 
                     alert("Cadastrado com sucesso!")
 
@@ -304,13 +323,16 @@ export default {
 
         Logar() {
             this.users = {nome: this.nomeLogin, senha: this.senhaLogin}
-            this.$store.dispatch('login/GetUserLogin', this.users).then(res => {
-                this.$store.commit('login/setUsers', res)
+            this.$store.dispatch('Usuarios/login/GetUserLogin', this.users).then(res => {
+                this.$store.commit('Usuarios/login/setUsers', res)
 
-                let name =  this.$store.getters['login/getUsers']
+                let name =  this.$store.getters['Usuarios/login/getUsers']
 
-                if(this.nomeLogin == name.nome){
+                if(name.usuarioId != null){
+                    window.localStorage.setItem('id', name.usuarioId)
                     this.isLogin = !this.isLogin
+                } else{
+                    alert("Login inválido!")
                 }
             })
         },

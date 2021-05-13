@@ -14,7 +14,7 @@ export const mutations = {
 export const actions = {
     GetUserLogin({ commit }, todos) {
         var res = this.$axios.$get('https://localhost:5001/Login/Get?nome=' + todos.nome + '&senha=' + todos.senha)
-
+        
         return res
         
     }
