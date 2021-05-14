@@ -1,9 +1,29 @@
 <template>
-    <div>
+    <div class="container">
         <b-form-file ref="file" v-model="file" class="mt-3" plain></b-form-file>
-        <div class="mt-3">Selected file: {{ file2 ? file2.name : '' }}</div>
-        <button @click="selectFile">teste</button>
+        <div class="mt-3">Selected file: {{ file ? file.name : '' }}</div>
+        <button @click="selectFile">Enviar</button>
         <img v-bind:src="imagePreview" v-show="showPreview">
+        <br><br>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Download</th>
+                </tr>
+            </thead>
+            <thead v-for="i in dados" :key="i">
+                <tr>
+                    <td>{{ i.id }}</td>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.type }}</td>
+                    <td>{{ i.dow }}</td>
+                </tr>
+            </thead>
+        </table>
     </div>
 </template>
 
@@ -13,14 +33,19 @@
       return {
         file: null,
         showPreview: false,
-        imagePreview: ''
+        imagePreview: '',
+        dados: [{id: 1, name: 'teste', type: '.img', dow: 'faz'},
+                {id: 2, name: 'teste', type: '.img', dow: 'faz'},
+                {id: 3, name: 'teste', type: '.img', dow: 'faz'},
+                {id: 4, name: 'teste', type: '.img', dow: 'faz'},
+                {id: 5, name: 'teste', type: '.img', dow: 'faz'}]
       }
     },
 
     methods: {
         selectFile() {
             
-            this.file2 = this.$refs.file.files[0];
+            this.file = this.$refs.file.files[0];
 
             console.log(this.file)
 
@@ -48,7 +73,7 @@
             /*
                 Ensure the file is an image file.
             */
-                if ( /\.(jpe?g|png|gif)$/.test( this.file.name ) ) {
+                if ( /\.(jpe?g|png|gif)$/i.test( this.file.name ) ) {
                     /*
                     Fire the readAsDataURL method which will read the file in and
                     upon completion fire a 'load' event which we will listen to and
