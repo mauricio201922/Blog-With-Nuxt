@@ -2,7 +2,7 @@
     <div class="container">
         <b-form-file ref="file" v-model="file" class="mt-3" plain></b-form-file>
         <div class="mt-3">Selected file: {{ file ? file.name : '' }}</div>
-        <button @click="selectFile">Enviar</button>
+        <button class="btn-primary" @click="selectFile">Enviar</button>
         <br><br>
 
         <table class="table">
@@ -19,7 +19,7 @@
                     <td>{{ i.id }}</td>
                     <td>{{ i.nome }}</td>
                     <td>{{ i.type }}</td>
-                    <td><button @click="download(i)">Download</button></td>
+                    <td><button @click="download(i)" class="btn-primary">Download</button></td>
                 </tr>
             </thead>
         </table>

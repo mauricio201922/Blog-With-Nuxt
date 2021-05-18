@@ -52,7 +52,8 @@
                 </b-form-input>
 
                 <!-- Botão Logar -->
-                <b-button class="mr-3" variant="primary" @click="Logar">Logar</b-button>
+                <b-button v-if="!isLoading" class="mr-3" variant="primary" @click="Logar">Logar</b-button>
+                <b-spinner v-if="isLoading" variant="primary" label="Spinning"></b-spinner>
 
 
                 <!------------------------------------------------------------------------------>
@@ -154,7 +155,8 @@
                                 </b-form-input>
 
                                 <!-- Botão para Logar no formato mobile -->
-                                <b-button class="mr-3" variant="primary" @click="Logar">Logar</b-button>
+                                <b-button v-if="!isLoading" class="mr-3" variant="primary" @click="Logar">Logar</b-button>
+                                <b-spinner v-if="isLoading" variant="primary" label="Spinning"></b-spinner>
 
                                 <!------------------------------------------------------------------------------>
                                 
@@ -165,6 +167,14 @@
                             <div class="color mr-3" v-if="isLogin">
                                 <b-link to="/"><b-avatar class="mr-1 mb-1 mt-1"></b-avatar></b-link>
                                 <span class="mr-auto">{{ nomeLogin }}</span>
+                                <b-button 
+                                class="bg-transparent border-0" 
+                                @click="logout">
+                                    <img 
+                                    src="@/assets/img/logout.png" 
+                                    width="32" 
+                                    height="32">
+                                </b-button>
                             </div>
 
                         </b-nav>
@@ -191,6 +201,7 @@ export default {
             senhaLogin: '',
             isLogin: false,
             isMobile: false,
+            isLoading: false
         }
     },
 
@@ -237,14 +248,22 @@ export default {
                 this.$store.commit('Usuarios/login/setUsers', res)
 
                 let name =  this.$store.getters['Usuarios/login/getUsers']
-
+                
                 if(name.usuarioId != null){
+                    this.isLoading = true
                     window.localStorage.setItem('id', name.usuarioId)
-                    this.isLogin = !this.isLogin
+                    setTimeout(() => {
+                        this.isLogin = !this.isLogin
+                        this.isLoading = false
+                    }, 1000)
                 } else{
                     alert("Login inválido!")
                 }
+                
             })
+            
+
+            
         },
         
         onResize() {
