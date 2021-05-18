@@ -59,7 +59,7 @@
             /*
                 Ensure the file is an image file.
             */
-                if ( /\.(jpe?g|png|gif|pdf)$/i.test( this.file.name ) ) {
+                if ( /\.(jpe?g|png|gif|pdf|c|cpp)$/i.test( this.file.name ) ) {
                     /*
                     Fire the readAsDataURL method which will read the file in and
                     upon completion fire a 'load' event which we will listen to and
