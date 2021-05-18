@@ -19,7 +19,7 @@
                     <td>{{ i.id }}</td>
                     <td>{{ i.nome }}</td>
                     <td>{{ i.type }}</td>
-                    <td><button>Download</button></td>
+                    <td><button @click="download(i)">Download</button></td>
                 </tr>
             </thead>
         </table>
@@ -39,7 +39,6 @@
     created() {
         this.$store.dispatch("Upload/Arquivos/uploadArquivos/getFilesUpload").then(res => {
 
-            console.log(res)
             this.$store.commit('Upload/Arquivos/uploadArquivos/setUpload', res)
 
             
@@ -60,7 +59,7 @@
             /*
                 Ensure the file is an image file.
             */
-                if ( /\.(jpe?g|png|gif)$/i.test( this.file.name ) ) {
+                if ( /\.(jpe?g|png|gif|pdf)$/i.test( this.file.name ) ) {
                     /*
                     Fire the readAsDataURL method which will read the file in and
                     upon completion fire a 'load' event which we will listen to and
@@ -70,11 +69,15 @@
                     */
 
                     
-
+                    this.$store.dispatch("Upload/Arquivos/salvandoArquivo/enviandoArquivos", this.file)
                     
                 }
             }
-            this.$store.dispatch("Upload/Arquivos/uploadArquivos/enviandoArquivos", this.file)
+            
+        },
+
+        download(down) {
+            window.location.href = "https://localhost:5001/Upload/downloadFile/" + down.nome
         }
     }
   }
