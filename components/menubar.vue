@@ -53,7 +53,10 @@
 
                 <!-- Botão Logar -->
                 <b-button v-if="!isLoading" class="mr-3" variant="primary" @click="Logar">Logar</b-button>
-                <b-spinner v-if="isLoading" variant="primary" label="Spinning"></b-spinner>
+                <b-button v-else variant="primary" disabled>
+                    <b-spinner small type="grow"></b-spinner>
+                    Loadding...
+                </b-button>
 
 
                 <!------------------------------------------------------------------------------>
@@ -156,7 +159,10 @@
 
                                 <!-- Botão para Logar no formato mobile -->
                                 <b-button v-if="!isLoading" class="mr-3" variant="primary" @click="Logar">Logar</b-button>
-                                <b-spinner v-if="isLoading" variant="primary" label="Spinning"></b-spinner>
+                                <b-button v-else variant="primary" disabled>
+                                    <b-spinner small type="grow"></b-spinner>
+                                    Loadding...
+                                </b-button>
 
                                 <!------------------------------------------------------------------------------>
                                 
@@ -255,7 +261,7 @@ export default {
                     setTimeout(() => {
                         this.isLogin = !this.isLogin
                         this.isLoading = false
-                    }, 1000)
+                    }, 3000)
                 } else{
                     alert("Login inválido!")
                 }
